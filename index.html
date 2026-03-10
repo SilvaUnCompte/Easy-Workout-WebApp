@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Easy Counter - Workout App</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Main Page -->
+    <div id="main-page" class="page active">
+      <header class="app-header">
+        <button id="options-btn" class="icon-btn" aria-label="Options">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+        <h1 class="app-title">Easy Counter</h1>
+        <button id="add-workout-btn" class="icon-btn" aria-label="Add Workout">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+      </header>
+      <main class="workout-list" id="workout-list">
+        <!-- Workout cards will be rendered here -->
+      </main>
+      <div class="empty-state" id="empty-state">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5">
+          <path d="M6.5 6.5h11v11h-11z"></path>
+          <path d="M6.5 6.5L12 2l5.5 4.5"></path>
+          <path d="M17.5 17.5L12 22l-5.5-4.5"></path>
+        </svg>
+        <p>No workouts yet</p>
+        <p class="hint">Click the + button to create one</p>
+      </div>
+    </div>
+
+    <!-- Options Page -->
+    <div id="options-page" class="page">
+      <header class="app-header">
+        <button id="options-back-btn" class="icon-btn" aria-label="Back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        <h1 class="app-title">Options</h1>
+        <div style="width:40px"></div>
+      </header>
+      <main class="options-content">
+        <section class="option-section">
+          <h2>Theme Color</h2>
+          <div class="color-options">
+            <button class="color-btn" data-color="blue" aria-label="Blue theme">
+              <span class="color-preview blue"></span>
+              <span>Blue</span>
+            </button>
+            <button class="color-btn" data-color="green" aria-label="Green theme">
+              <span class="color-preview green"></span>
+              <span>Green</span>
+            </button>
+            <button class="color-btn" data-color="red" aria-label="Red theme">
+              <span class="color-preview red"></span>
+              <span>Red</span>
+            </button>
+          </div>
+        </section>
+        
+        <section class="option-section">
+          <h2>Countdown Beeps</h2>
+          <p class="option-hint">Number of seconds to beep before block ends</p>
+          <div class="beep-selector">
+            <button id="beep-minus" class="beep-btn">-</button>
+            <span id="beep-count">3</span>
+            <button id="beep-plus" class="beep-btn">+</button>
+          </div>
+        </section>
+
+        <section class="option-section">
+          <h2>Export / Import</h2>
+          <div class="export-import-btns">
+            <button id="export-btn" class="action-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Export Workouts
+            </button>
+            <button id="import-btn" class="action-btn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              Import Workouts
+            </button>
+            <input type="file" id="import-input" accept=".json" hidden>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Editor Page -->
+    <div id="editor-page" class="page">
+      <header class="app-header">
+        <button id="editor-back-btn" class="icon-btn" aria-label="Back">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        <h1 class="app-title" id="editor-title">New Workout</h1>
+        <button id="save-workout-btn" class="icon-btn" aria-label="Save">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </button>
+      </header>
+      <main class="editor-content">
+        <section class="editor-section">
+          <label for="workout-name">Workout Name</label>
+          <input type="text" id="workout-name" placeholder="My Workout" maxlength="30">
+        </section>
+
+        <section class="editor-section">
+          <label>Choose Icon</label>
+          <div class="icon-grid" id="icon-grid">
+            <!-- Icons will be rendered here -->
+          </div>
+        </section>
+
+        <section class="editor-section">
+          <div class="section-header">
+            <label>Block Library</label>
+            <button id="add-block-btn" class="small-btn">+ New Block</button>
+          </div>
+          <p class="section-hint">Define your blocks here. You can reuse them in the timeline below.</p>
+          <div id="blocks-container">
+            <!-- Blocks will be rendered here -->
+          </div>
+        </section>
+
+        <section class="editor-section timeline-section">
+          <div class="section-header">
+            <label>Timeline</label>
+            <div class="timeline-actions">
+              <button id="add-timeline-block-btn" class="small-btn">+ Block</button>
+              <button id="add-timeline-loop-btn" class="small-btn secondary">+ Loop</button>
+            </div>
+          </div>
+          <p class="section-hint">Build your workout sequence. Add blocks or loops (groups of blocks that repeat).</p>
+          <div id="timeline-container" class="timeline-container">
+            <!-- Timeline items will be rendered here -->
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Block Picker Modal -->
+    <div id="block-picker-modal" class="modal hidden">
+      <div class="modal-content block-picker-content">
+        <div class="modal-header">
+          <h3>Select Block</h3>
+          <button id="close-block-picker" class="modal-close">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div id="block-picker-list" class="block-picker-list">
+          <!-- Block options will be rendered here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Workout Page -->
+    <div id="workout-page" class="page">
+      <div class="workout-display" id="workout-display">
+        <div class="workout-info">
+          <span id="current-block-name">Get Ready!</span>
+          <span id="current-timer" class="timer-display">10</span>
+          <span id="loop-info" class="loop-info"></span>
+        </div>
+        <button id="click-continue" class="click-continue hidden">Tap to Continue</button>
+        <button id="cancel-workout-btn" class="cancel-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <!-- Complete Page -->
+    <div id="complete-page" class="page">
+      <div class="complete-content">
+        <h2>Workout Complete!</h2>
+        <div id="complete-image" class="complete-image"></div>
+        <button id="back-to-main" class="action-btn primary">Back to Main</button>
+      </div>
+    </div>
+
+    <!-- Generic Confirmation Modal -->
+    <div id="confirm-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3 id="confirm-modal-title">Confirm</h3>
+        <p id="confirm-modal-message">Are you sure?</p>
+        <div class="modal-actions">
+          <button id="confirm-modal-cancel" class="action-btn">Cancel</button>
+          <button id="confirm-modal-ok" class="action-btn danger">Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Import Options Modal -->
+    <div id="import-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Import Workouts</h3>
+        <p>How would you like to import workouts?</p>
+        <div class="modal-actions import-actions">
+          <button id="import-replace" class="action-btn danger">Replace All</button>
+          <button id="import-merge" class="action-btn primary">Add to Existing</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/editor.js"></script>
+  <script src="js/workout.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
