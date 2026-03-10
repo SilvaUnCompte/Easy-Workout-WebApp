@@ -186,7 +186,7 @@ const Editor = {
     });
     
     container.querySelectorAll('.block-name').forEach(input => {
-      input.addEventListener('input', (e) => {
+      input.addEventListener('change', (e) => {
         this.updateBlockDefinition(e.target.dataset.id, 'name', e.target.value);
       });
     });
@@ -198,13 +198,13 @@ const Editor = {
     });
     
     container.querySelectorAll('.block-duration').forEach(input => {
-      input.addEventListener('input', (e) => {
+      input.addEventListener('change', (e) => {
         this.updateBlockDefinition(e.target.dataset.id, 'duration', parseInt(e.target.value) || 30);
       });
     });
     
     container.querySelectorAll('.block-color').forEach(input => {
-      input.addEventListener('input', (e) => {
+      input.addEventListener('change', (e) => {
         this.updateBlockDefinition(e.target.dataset.id, 'color', e.target.value);
         e.target.parentElement.querySelector('.color-preview-box').style.backgroundColor = e.target.value;
       });
@@ -628,7 +628,7 @@ const Editor = {
     });
     
     const repsInput = el.querySelector('.loop-reps-input');
-    repsInput.addEventListener('input', (e) => {
+    repsInput.addEventListener('change', (e) => {
       this.updateLoopRepetitions(loop.id, e.target.value);
     });
     
