@@ -5,13 +5,10 @@ Easy Counter is a lightweight browser-based workout timer that lets you build cu
 ## Screenshots
 
 ### Main page
-![Main page](img/main.png)
-
-### Timeline editor
-![Timeline editor](img/timeline.png)
+<img src="img/list.png" alt="Main page" style="width: 300px; height: auto;">
 
 ### Workout execution
-![Workout execution](img/workout.png)
+<img src="img/workout.png" alt="Workout execution" style="width: 300px; height: auto;">
 
 ## Features
 
