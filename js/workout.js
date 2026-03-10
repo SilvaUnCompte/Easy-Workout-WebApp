@@ -53,7 +53,7 @@ const Workout = {
     App.showPage('workout-page');
     
     Audio.init();
-    
+
     this.startCountdown();
   },
 
@@ -174,6 +174,8 @@ const Workout = {
         }
       }, 1000);
     }
+
+    Audio.speak(block.name);
   },
 
   handleClick() {

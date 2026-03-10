@@ -18,6 +18,7 @@ const App = {
     const settings = Storage.getSettings();
     document.body.dataset.theme = settings.theme;
     document.getElementById('beep-count').textContent = settings.beepCount;
+    document.getElementById('tts-enabled').checked = settings.ttsEnabled;
     
     document.querySelectorAll('.color-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.color === settings.theme);
@@ -70,6 +71,13 @@ const App = {
         beepCountEl.textContent = settings.beepCount;
       }
     };
+
+    // Text-to-speech toggle
+    document.getElementById('tts-enabled').addEventListener('change', (e) => {
+      const settings = Storage.getSettings();
+      settings.ttsEnabled = e.target.checked;
+      Storage.saveSettings(settings);
+    });
     
     // Export
     document.getElementById('export-btn').addEventListener('click', () => {

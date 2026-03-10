@@ -69,21 +69,26 @@ const Storage = {
 
   // Settings
   getSettings() {
+    const defaults = {
+      theme: 'blue',
+      beepCount: 3,
+      ttsEnabled: true
+    };
+
     const settings = this.getItem('settings');
-    if (!settings) {
-      return {
-        theme: 'blue',
-        beepCount: 3
-      };
-    }
+    if (!settings) return defaults;
+    
+    const mergedSettings = { ...defaults, ...settings };
     // Ensure beepCount is a number
-    settings.beepCount = parseInt(settings.beepCount) || 3;
-    return settings;
+    mergedSettings.beepCount = parseInt(mergedSettings.beepCount) || 3;
+    mergedSettings.ttsEnabled = !!mergedSettings.ttsEnabled;
+    return mergedSettings;
   },
 
   saveSettings(settings) {
     // Ensure beepCount is stored as a number
     settings.beepCount = parseInt(settings.beepCount) || 3;
+    settings.ttsEnabled = !!settings.ttsEnabled;
     this.setItem('settings', settings);
   },
 
