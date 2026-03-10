@@ -2,6 +2,17 @@
 
 Easy Counter is a lightweight browser-based workout timer that lets you build custom workout flows from reusable blocks, then run them with clear visual and audio cues.
 
+## Screenshots
+
+### Main page
+![Main page](img/main.png)
+
+### Timeline editor
+![Timeline editor](img/timeline.png)
+
+### Workout execution
+![Workout execution](img/workout.png)
+
 ## Features
 
 ### Workout management
