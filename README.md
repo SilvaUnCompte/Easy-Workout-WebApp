@@ -56,6 +56,7 @@ Easy Counter is a lightweight browser-based workout timer that lets you build cu
 ### App options
 - Theme selection (Blue, Green, Red).
 - Configurable end-of-block beep window (1 to 99 seconds).
+- Text-to-speech (TTS) toggle for spoken block names.
 
 ### Data persistence and portability
 - Workouts and settings are stored in `localStorage`.
@@ -72,3 +73,11 @@ Easy Counter is a lightweight browser-based workout timer that lets you build cu
 ## Run locally
 1. Open `index.html` in a modern browser.
 2. Create your first workout with the `+` button.
+
+## Important
+For the app to keep working reliably when the screen is off, you may need to disable battery optimization for this app.
+
+### General steps (For exemple in Android 12+)
+1. Open `Settings > Apps > Workout Planner`.
+2. Tap `Battery` (or `Battery usage`).
+3. Select `Unrestricted` (or `Not optimized`, depending on device wording).
