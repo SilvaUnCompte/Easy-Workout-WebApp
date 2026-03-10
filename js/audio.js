@@ -66,7 +66,7 @@ const Audio = {
     if (!settings.ttsEnabled) return;
 
     const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = opts.lang || 'en-US';
+    utter.lang = opts.lang || settings.ttsLanguage || 'en-US';
     utter.rate = opts.rate || 1;
     utter.pitch = opts.pitch || 1;
 

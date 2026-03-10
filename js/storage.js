@@ -72,7 +72,8 @@ const Storage = {
     const defaults = {
       theme: 'blue',
       beepCount: 3,
-      ttsEnabled: true
+      ttsEnabled: false,
+      ttsLanguage: 'en-US'
     };
 
     const settings = this.getItem('settings');
@@ -82,6 +83,7 @@ const Storage = {
     // Ensure beepCount is a number
     mergedSettings.beepCount = parseInt(mergedSettings.beepCount) || 3;
     mergedSettings.ttsEnabled = !!mergedSettings.ttsEnabled;
+    mergedSettings.ttsLanguage = mergedSettings.ttsLanguage === 'fr-FR' ? 'fr-FR' : 'en-US';
     return mergedSettings;
   },
 
@@ -89,6 +91,7 @@ const Storage = {
     // Ensure beepCount is stored as a number
     settings.beepCount = parseInt(settings.beepCount) || 3;
     settings.ttsEnabled = !!settings.ttsEnabled;
+    settings.ttsLanguage = settings.ttsLanguage === 'fr-FR' ? 'fr-FR' : 'en-US';
     this.setItem('settings', settings);
   },
 

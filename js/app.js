@@ -19,6 +19,9 @@ const App = {
     document.body.dataset.theme = settings.theme;
     document.getElementById('beep-count').textContent = settings.beepCount;
     document.getElementById('tts-enabled').checked = settings.ttsEnabled;
+    document.querySelectorAll('.tts-lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === settings.ttsLanguage);
+    });
     
     document.querySelectorAll('.color-btn').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.color === settings.theme);
@@ -77,6 +80,17 @@ const App = {
       const settings = Storage.getSettings();
       settings.ttsEnabled = e.target.checked;
       Storage.saveSettings(settings);
+    });
+
+    document.querySelectorAll('.tts-lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const settings = Storage.getSettings();
+        settings.ttsLanguage = btn.dataset.lang;
+        Storage.saveSettings(settings);
+
+        document.querySelectorAll('.tts-lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
     });
     
     // Export
@@ -166,7 +180,14 @@ const App = {
       
       const blockCount = workout.timeline ? workout.timeline.reduce((count, item) => {
         if (item.type === 'block') return count + 1;
-        if (item.type === 'loop') return count + item.items.length;
+        if (item.type === 'loop') {
+          const repetitions = item.repetitions || 2;
+          const loopBlockCount = (item.items || []).reduce((loopCount, loopItem) => {
+            const reps = loopItem.skipOnLastLoop ? (repetitions - 1) : repetitions;
+            return loopCount + Math.max(0, reps);
+          }, 0);
+          return count + loopBlockCount;
+        }
         return count;
       }, 0) : 0;
       

@@ -97,6 +97,33 @@
   gap: 12px;
 }
 
+.tts-language-options {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.tts-lang-btn {
+  flex: 1;
+  padding: 10px 12px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.tts-lang-btn:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.tts-lang-btn.active {
+  border-color: var(--accent);
+}
+
 /* Editor Page */
 .editor-content {
   padding: 20px;
