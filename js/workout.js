@@ -8,11 +8,17 @@ const Workout = {
   timeRemaining: 0,
   isPaused: false,
   settings: null,
+  wakeLock: null,
 
   completionImages: ['&#128170;', '&#127942;', '&#127881;', '&#11088;', '&#128293;', '&#128079;', '&#129351;', '&#128175;'],
 
   init() {
     this.bindEvents();
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible' && this.timer) {
+        this.acquireWakeLock();
+      }
+    });
   },
 
   bindEvents() {
@@ -53,6 +59,7 @@ const Workout = {
     App.showPage('workout-page');
     
     Audio.init();
+    this.acquireWakeLock();
 
     this.startCountdown();
   },
@@ -188,8 +195,26 @@ const Workout = {
     }
   },
 
+  async acquireWakeLock() {
+    if (!('wakeLock' in navigator)) return;
+    try {
+      this.wakeLock = await navigator.wakeLock.request('screen');
+      this.wakeLock.addEventListener('release', () => { this.wakeLock = null; });
+    } catch (err) {
+      // Wake lock not granted (e.g. low battery), continue silently
+    }
+  },
+
+  releaseWakeLock() {
+    if (this.wakeLock) {
+      this.wakeLock.release();
+      this.wakeLock = null;
+    }
+  },
+
   complete() {
     clearInterval(this.timer);
+    this.releaseWakeLock();
     
     Audio.playFinalBeep(() => {
       const completeImage = document.getElementById('complete-image');
@@ -209,6 +234,7 @@ const Workout = {
     );
     if (confirmed) {
       clearInterval(this.timer);
+      this.releaseWakeLock();
       App.showPage('main-page');
     }
   }
